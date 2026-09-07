@@ -53,8 +53,9 @@ Pastikan Anda sudah menginstal:
    Setelah perintah di atas dijalankan, terminal akan menampilkan URL lokal seperti:
    ```
    ➜ Local:   http://localhost:5173/
+   ➜ Online:   https://weathereki.netlify.app
    ```
-   Buka alamat `http://localhost:5173/` di browser web Anda (Chrome, Edge, Firefox, dll).
+   Buka alamat `http://localhost:5173/` atau `https://weathereki.netlify.app` di browser web Anda (Chrome, Edge, Firefox, dll).
 
 ---
 
