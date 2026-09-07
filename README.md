@@ -1,75 +1,78 @@
-# React + TypeScript + Vite
+# ⛅ Aplikasi Ramalan Cuaca (Weather Outlook App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi web modern untuk melihat ramalan cuaca interaktif dan real-time berdasarkan data **Visual Crossing Weather API**. Dilengkapi dengan tampilan cuaca 48 jam (24 jam lalu & 24 jam depan), penanda otomatis waktu saat ini, serta antarmuka yang bersih dan responsif.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Teknologi yang Digunakan
 
-## React Compiler
+- **React 19** + **TypeScript**
+- **Vite** (Build Tool & Dev Server)
+- **Tailwind CSS v4**
+- **Shadcn UI** & **Lucide React Icons**
+- **Visual Crossing Weather API**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Cara Menjalankan Project di Laptop (Lokal)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi di komputer/laptop Anda:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. Prasyarat (Prerequisites)
+Pastikan Anda sudah menginstal:
+- **Node.js** (Versi 18 atau lebih baru). Cek dengan perintah:
+  ```bash
+  node -v
+  ```
+- **npm** (Bawaan Node.js). Cek dengan perintah:
+  ```bash
+  npm -v
+  ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Langkah-Langkah Instalasi & Mengoperasikan
 
-```
+1. **Buka Terminal / Command Prompt** dan masuk ke direktori project:
+   ```bash
+   cd "weatherApp"
+   ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install Semua Dependensi**:
+   Jalankan perintah berikut untuk mengunduh semua paket yang dibutuhkan:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Jalankan Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **Buka Aplikasi di Browser**:
+   Setelah perintah di atas dijalankan, terminal akan menampilkan URL lokal seperti:
+   ```
+   ➜ Local:   http://localhost:5173/
+   ```
+   Buka alamat `http://localhost:5173/` di browser web Anda (Chrome, Edge, Firefox, dll).
 
-```
+---
+
+## 📜 Perintah Utama (Available Scripts)
+
+| Perintah | Keterangan |
+| :--- | :--- |
+| `npm run dev` | Menjalankan server pengembang lokal dengan Hot Reload (`http://localhost:5173`). |
+| `npm run build` | Melakukan kompilasi TypeScript dan membuat folder bundle produksi (`dist/`). |
+| `npm run preview` | Menjalankan preview dari hasil kompilasi produksi secara lokal. |
+| `npm run lint` | Memeriksa kualitas kode menggunakan ESLint. |
+
+---
+
+## ✨ Fitur Utama
+
+- 🔍 **Pencarian Kota Real-Time**: Masukkan nama kota di Indonesia atau mancanegara (contoh: *Pandeglang, Jakarta, Bandung, Serang, Surabaya*).
+- ⏱️ **Laporan 48 Jam**: Menampilkan riwayat cuaca 24 jam sebelumnya dan prakiraan 24 jam berikutnya.
+- 🎯 **Penanda "Saat Ini" & Auto-Scroll**: Card jam cuaca saat ini ditandai dengan warna khusus dan otomatis bergeser ke tengah layar.
+- 🔄 **Tombol Perbarui (Refresh)**: Memperbarui data cuaca terkini secara instan dari API.
+- 🌐 **Netlify Ready**: Sudah dilengkapi file konfig `netlify.toml` dan `public/_redirects` untuk kemudahan hosting.
