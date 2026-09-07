@@ -42,6 +42,8 @@ function App() {
       {outlookData ? (
         <WeatherOutlookView
           outlook={outlookData}
+          isRefreshing={loading}
+          onRefresh={() => handleSearch(outlookData.location)}
           onBack={() => {
             setOutlookData(null)
             setError(null)
@@ -54,8 +56,8 @@ function App() {
               <CloudSun className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">Weather Outlook</h1>
-              <p className="text-xs text-muted-foreground">Visual Crossing Weather API</p>
+              <h1 className="text-xl font-bold tracking-tight">Ramalan Cuaca</h1>
+              <p className="text-xs text-muted-foreground">Layanan Ramalan Cuaca Akurat</p>
             </div>
           </div>
 
@@ -72,7 +74,7 @@ function App() {
               <div className="relative">
                 <Input
                   id="city"
-                  placeholder="Input your city name... (cth: Pandeglang)"
+                  placeholder="Masukkan nama kota... (cth: Pandeglang)"
                   value={cityName}
                   onChange={(e) => setCityName(e.target.value)}
                   disabled={loading}
@@ -89,7 +91,7 @@ function App() {
                   Mengambil Data...
                 </>
               ) : (
-                'Get Weather'
+                'Cek Cuaca'
               )}
             </Button>
           </form>
