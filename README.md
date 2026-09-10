@@ -19,7 +19,9 @@ Aplikasi web modern untuk melihat ramalan cuaca interaktif dan real-time berdasa
 Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi di komputer/laptop Anda:
 
 ### 1. Prasyarat (Prerequisites)
+
 Pastikan Anda sudah menginstal:
+
 - **Node.js** (Versi 18 atau lebih baru). Cek dengan perintah:
   ```bash
   node -v
@@ -34,17 +36,20 @@ Pastikan Anda sudah menginstal:
 ### 2. Langkah-Langkah Instalasi & Mengoperasikan
 
 1. **Buka Terminal / Command Prompt** dan masuk ke direktori project:
+
    ```bash
    cd "weatherApp"
    ```
 
 2. **Install Semua Dependensi**:
    Jalankan perintah berikut untuk mengunduh semua paket yang dibutuhkan:
+
    ```bash
    npm install
    ```
 
 3. **Jalankan Development Server**:
+
    ```bash
    npm run dev
    ```
@@ -61,18 +66,18 @@ Pastikan Anda sudah menginstal:
 
 ## 📜 Perintah Utama (Available Scripts)
 
-| Perintah | Keterangan |
-| :--- | :--- |
-| `npm run dev` | Menjalankan server pengembang lokal dengan Hot Reload (`http://localhost:5173`). |
-| `npm run build` | Melakukan kompilasi TypeScript dan membuat folder bundle produksi (`dist/`). |
-| `npm run preview` | Menjalankan preview dari hasil kompilasi produksi secara lokal. |
-| `npm run lint` | Memeriksa kualitas kode menggunakan ESLint. |
+| Perintah          | Keterangan                                                                       |
+| :---------------- | :------------------------------------------------------------------------------- |
+| `npm run dev`     | Menjalankan server pengembang lokal dengan Hot Reload (`http://localhost:5173`). |
+| `npm run build`   | Melakukan kompilasi TypeScript dan membuat folder bundle produksi (`dist/`).     |
+| `npm run preview` | Menjalankan preview dari hasil kompilasi produksi secara lokal.                  |
+| `npm run lint`    | Memeriksa kualitas kode menggunakan ESLint.                                      |
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🔍 **Pencarian Kota Real-Time**: Masukkan nama kota di Indonesia atau mancanegara (contoh: *Pandeglang, Jakarta, Bandung, Serang, Surabaya*).
+- 🔍 **Pencarian Kota Real-Time**: Masukkan nama kota di Indonesia atau mancanegara (contoh: _Pandeglang, Jakarta, Bandung, Serang, Surabaya_).
 - ⏱️ **Laporan 48 Jam**: Menampilkan riwayat cuaca 24 jam sebelumnya dan prakiraan 24 jam berikutnya.
 - 🎯 **Penanda "Saat Ini" & Auto-Scroll**: Card jam cuaca saat ini ditandai dengan warna khusus dan otomatis bergeser ke tengah layar.
 - 🔄 **Tombol Perbarui (Refresh)**: Memperbarui data cuaca terkini secara instan dari API.

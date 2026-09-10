@@ -139,16 +139,23 @@ export function weatherOutlook(data: RawWeatherData): WeatherOutlookResult {
   const maxTimeMs = nowMs + twentyFourHoursMs;
 
   const getHourRainChance = (h: RawHourData): number => {
-    if (typeof h.precipprob === 'number' && h.precipprob > 0) {
+    if (typeof h.precipprob === 'number' && h.precipprob !== null) {
       return Math.round(h.precipprob);
     }
-    if (typeof h.precip === 'number' && h.precip > 0) {
+    if (typeof h.precip === 'number' && h.precip !== null && h.precip > 0) {
       return 100;
     }
-    return Math.round(h.precipprob || 0);
+    return 0;
   };
 
   const timelineItems: TimelineItem[] = allHours
+    .filter(h => {
+      const hourStr = h.datetime.length === 5 ? `${h.datetime}:00` : h.datetime;
+      const fullIsoStr = `${h.dayDate}T${hourStr}`;
+      const itemDate = new Date(fullIsoStr);
+      const itemTimeMs = itemDate.getTime();
+      return !isNaN(itemTimeMs) && itemTimeMs >= minTimeMs && itemTimeMs <= maxTimeMs;
+    })
     .map(h => {
       const hourStr = h.datetime.length === 5 ? `${h.datetime}:00` : h.datetime;
       const fullIsoStr = `${h.dayDate}T${hourStr}`;
@@ -161,7 +168,7 @@ export function weatherOutlook(data: RawWeatherData): WeatherOutlookResult {
 
       const isPast = itemTimeMs < nowMs - 30 * 60 * 1000;
 
-      let dateLabel = h.dayDate;
+      let dateLabel: string;
       const dayDiff = Math.round((new Date(h.dayDate).getTime() - new Date(todayStr).getTime()) / (1000 * 3600 * 24));
       if (dayDiff === 0) dateLabel = 'Hari Ini';
       else if (dayDiff === -1) dateLabel = 'Kemarin';
@@ -182,22 +189,15 @@ export function weatherOutlook(data: RawWeatherData): WeatherOutlookResult {
         rainChance: `${getHourRainChance(h)}%`,
         condition: translateCondition(h.conditions || 'Cerah'),
         isCurrentHour,
-        isPast,
-        itemTimeMs
+        isPast
       };
-    })
-    .filter(item => !isNaN(item.itemTimeMs) && item.itemTimeMs >= minTimeMs && item.itemTimeMs <= maxTimeMs)
-    .map(({ itemTimeMs, ...item }) => item);
+    });
 
   const todayHours = todayData?.hours || [];
   const hourRainChances = todayHours.map(getHourRainChance);
-  const dayPrecipprob = typeof todayData?.precipprob === 'number' ? todayData.precipprob : 0;
-  const dayPrecip = typeof todayData?.precip === 'number' ? todayData.precip : 0;
+  const dayPrecipprob = typeof todayData?.precipprob === 'number' && todayData.precipprob !== null ? todayData.precipprob : 0;
 
-  let maxRainChance = Math.max(dayPrecipprob, ...hourRainChances, 0);
-  if (dayPrecip > 0 && maxRainChance === 0) {
-    maxRainChance = 100;
-  }
+  const maxRainChance = Math.max(dayPrecipprob, ...hourRainChances, 0);
 
   return {
     location: data.resolvedAddress || data.address || 'Lokasi Tidak Diketahui',
